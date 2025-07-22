@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Jadwal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar browser frame */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column; /* Mengatur item flex agar menumpuk vertikal */
+        }
+
+        .browser-frame {
+            width: 80%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Tinggi tetap browser frame */
+            position: relative;
+        }
+
+        .browser-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .address-bar {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: right;
+            position: relative;
+        }
+
+        .address-bar::after {
+            content: '≡'; /* Burger menu icon */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .dashboard-content-area {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, #ddd, #eee); /* Gradasi latar belakang untuk Jadwal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .navigation-tabs {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            border-radius: 8px 8px 0 0;
+            border: 2px solid #333;
+            border-bottom: none;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            border-right: 2px solid #333;
+            flex-grow: 1;
+            text-align: center;
+            transition: background-color 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .nav-tab:last-child {
+            border-right: none;
+        }
+
+        .nav-tab.active {
+            background-color: #eee;
+        }
+
+        /* Styles for the schedule specific content */
+        .schedule-header {
+            width: calc(100% - 40px); /* Adjust for padding */
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 70px; /* Space for the navigation tabs */
+            margin-bottom: 20px;
+        }
+
+        .schedule-header-item {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .schedule-entry {
+            width: calc(100% - 40px); /* Adjust for padding */
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .schedule-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .schedule-code {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .schedule-date, .schedule-task {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .schedule-complete-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .add-schedule-button {
+            width: calc(100% - 40px); /* Adjust for padding */
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .add-schedule-button:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        /* --- Checkbox Container (tetap di bawah browser frame) --- */
+        .checkbox-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            font-size: 1em;
+            color: #fff;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a0a0ff;
+            border-radius: 4px;
+            background-color: #333;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background-color: #a0a0ff;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .browser-frame {
+                width: 95%;
+                height: auto; /* Mengizinkan tinggi menyesuaikan konten */
+            }
+
+            .navigation-tabs {
+                position: static; /* Biarkan mengalir secara normal pada mobile */
+                border-radius: 8px; /* Kembalikan radius penuh */
+                margin-bottom: 20px;
+                flex-wrap: wrap; /* Izinkan tab untuk wrap */
+            }
+
+            .nav-tab {
+                flex-basis: 50%; /* Dua tab per baris */
+                border-right: 2px solid #333;
+                border-bottom: 2px solid #333;
+            }
+
+            .nav-tab:nth-child(even) { /* Tab genap tanpa border kanan */
+                border-right: none;
+            }
+            .nav-tab:last-child {
+                border-bottom: none;
+            }
+
+            .schedule-header {
+                flex-wrap: wrap;
+                margin-top: 20px; /* Kurangi margin atas */
+            }
+
+            .schedule-header-item {
+                flex-basis: calc(50% - 10px); /* Two items per row with gap */
+                font-size: 1em;
+                padding: 8px;
+            }
+            .schedule-header-item:nth-child(odd) { /* Hapus border kanan untuk item ganjil jika 2 per baris */
+                 border-right: 2px solid #333;
+            }
+            .schedule-header-item:nth-child(even) {
+                 border-right: none;
+            }
+            .schedule-header-item:last-child {
+                border-right: none;
+            }
+
+
+            .schedule-entry, .add-schedule-button {
+                width: 100%; /* Lebarkan penuh */
+                padding: 10px;
+                font-size: 1em;
+            }
+
+            .schedule-code {
+                font-size: 1.1em;
+            }
+
+            .schedule-date, .schedule-task {
+                font-size: 0.85em;
+            }
+
+            .schedule-complete-icon {
+                width: 25px;
+                height: 25px;
+                font-size: 1.2em;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-frame">
+        <div class="browser-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="address-bar"></div>
+        </div>
+        <div class="dashboard-content-area">
+            <div class="navigation-tabs">
+                <div class="nav-tab">DOKUMENTASI</div>
+                <div class="nav-tab">LOG</div>
+                <div class="nav-tab active">JADWAL</div>
+                <div class="nav-tab">MENU UTAMA</div>
+            </div>
+
+            <div class="schedule-header">
+                <div class="schedule-header-item">DATE</div>
+                <div class="schedule-header-item">YEAR</div>
+                <div class="schedule-header-item">DAY</div>
+                <div class="schedule-header-item">COMPLETE</div>
+            </div>
+
+            <div class="schedule-entry">
+                <div class="schedule-info">
+                    <span class="schedule-code">113DE</span>
+                </div>
+                <div class="schedule-info">
+                    <span class="schedule-date">1 DESEMBER 2023</span>
+                    <span class="schedule-date">2 DESEMBER 2023</span>
+                </div>
+                <div class="schedule-info">
+                    <span class="schedule-task">MENANAM PADI</span>
+                </div>
+                <div class="schedule-complete-icon">✓</div>
+            </div>
+
+            <div class="add-schedule-button">
+                ADD SCEDULE (SUPERVISOR)
+            </div>
+        </div>
+    </div>
+
+    <div class="checkbox-container">
+        <div class="checkbox-item">
+            <input type="checkbox" id="resizeMobile" checked>
+            <label for="resizeMobile">Ubah ukuran untuk perangkat seluler</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="includeNav" checked>
+            <label for="includeNav">Sertakan menu navigasi</label>
+        </div>
+    </div>
+</body>
+</html>

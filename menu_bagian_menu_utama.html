@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar browser frame */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column; /* Added to stack browser-frame and checkbox-container vertically */
+        }
+
+        .browser-frame {
+            width: 80%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Tinggi tetap browser frame */
+            position: relative;
+        }
+
+        .browser-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .address-bar {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: right;
+            position: relative;
+        }
+
+        .address-bar::after {
+            content: '≡'; /* Burger menu icon */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .dashboard-content-area {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, #444, #888); /* Gradasi gelap ke terang di dalam frame */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .top-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px; /* Jarak antara baris atas dan ikon */
+            padding: 0 20px; /* Padding samping untuk teks */
+            box-sizing: border-box;
+        }
+
+        .menu-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .welcome-name {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .icon-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Jarak antar ikon */
+            flex-wrap: wrap; /* Agar ikon bisa wrap ke baris baru di layar kecil */
+        }
+
+        .icon-item {
+            background-color: #e0e0e0; /* Warna kotak ikon */
+            border: 2px solid #333; /* Border kotak ikon */
+            border-radius: 10px;
+            padding: 20px;
+            width: 150px; /* Ukuran kotak ikon */
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-svg {
+            width: 80px; /* Ukuran ikon SVG */
+            height: 80px;
+            fill: #333; /* Warna ikon */
+        }
+
+        .icon-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        /* --- Checkbox Container (tetap di bawah browser frame) --- */
+        .checkbox-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            font-size: 1em;
+            color: #fff;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a0a0ff;
+            border-radius: 4px;
+            background-color: #333;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background-color: #a0a0ff;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .browser-frame {
+                width: 95%;
+                height: auto;
+            }
+
+            .top-row {
+                flex-direction: column;
+                margin-bottom: 30px;
+            }
+
+            .menu-title, .welcome-name {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .icon-grid {
+                gap: 20px;
+            }
+
+            .icon-item {
+                width: 120px;
+                height: 120px;
+                padding: 15px;
+            }
+
+            .icon-svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-frame">
+        <div class="browser-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="address-bar"></div>
+        </div>
+        <div class="dashboard-content-area">
+            <div class="top-row">
+                <span class="menu-title">MENU</span>
+                <span class="welcome-name">WELCOME NAME</span>
+            </div>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/>
+                    </svg>
+                    <span class="icon-text">JADWAL</span>
+                </div>
+                <div class="icon-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-2 18H7v-2h5v2zm0-4H7v-2h5v2zm2-7V4.5L19.5 9H14z"/>
+                        <path d="M12 10.5V12h-2v-1.5zm-5 4h8v-2H7z"/>
+                        <path d="M19 3v12h-6v6h-2V9h-5V3h13zm-2 10V5.5L12.5 10H17z"/>
+                        <circle cx="15.5" cy="15.5" r="1.5"/>
+                        <path d="M17.5 17.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                        <path d="M22 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h14v12z"/>
+                        <path d="M18.99 5.5L14 10.49V6H8v10h10V9.01L18.99 5.5z"/>
+                        <path d="M13 13.5v-2H7v2h6zm0 3v-2H7v2h6z"/>
+                        <rect x="15" y="11.5" width="2" height="2"/>
+                        <rect x="15" y="14.5" width="2" height="2"/>
+                    </svg>
+                    <span class="icon-text">TASK</span>
+                </div>
+                <div class="icon-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-2 18H7v-2h5v2zm0-4H7v-2h5v2zm2-7V4.5L19.5 9H14z"/>
+                    </svg>
+                    <span class="icon-text">DOCUMENT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkbox-container">
+        <div class="checkbox-item">
+            <input type="checkbox" id="resizeMobile" checked>
+            <label for="resizeMobile">Ubah ukuran untuk perangkat seluler</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="includeNav" checked>
+            <label for="includeNav">Sertakan menu navigasi</label>
+        </div>
+    </div>
+</body>
+</html>

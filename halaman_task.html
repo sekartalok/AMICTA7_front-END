@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Dokumen/Task</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar browser frame */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column; /* Mengatur item flex agar menumpuk vertikal */
+        }
+
+        .browser-frame {
+            width: 80%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Tinggi tetap browser frame */
+            position: relative;
+        }
+
+        .browser-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .address-bar {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: right;
+            position: relative;
+        }
+
+        .address-bar::after {
+            content: '≡'; /* Burger menu icon */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .dashboard-content-area {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, #777, #bbb); /* Gradasi latar belakang untuk halaman ini */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .top-banner {
+            width: calc(100% + 40px); /* Extend to cover full width including padding */
+            background-color: #555; /* Darker background for the top banner */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+        }
+
+        .top-banner .title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .top-banner .menu-button {
+            background-color: #ccc;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .top-banner .menu-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .document-container {
+            width: calc(100% - 40px); /* Adjust for padding */
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 80px; /* Space for the top banner */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .document-box-header {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 45px;
+        }
+
+        .document-entry {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.1em;
+            color: #333;
+            gap: 10px; /* Spacing between columns */
+        }
+
+        .document-entry div {
+            flex: 1; /* Distribute space evenly */
+            text-align: center;
+        }
+        
+        .document-entry .col-task-id {
+            font-weight: bold;
+            text-align: left; /* Aligned left for 11D and 113DE */
+            flex: 0.8; /* Smaller proportion for ID TASK column */
+        }
+
+        .document-entry .col-date-time {
+            text-align: center;
+            flex: 1.2; /* Larger proportion for Date/Time column */
+        }
+
+        .document-entry .col-description {
+            text-align: right; /* Aligned right for descriptions */
+            flex: 1.5; /* Even larger proportion for Description column */
+        }
+        
+        .document-entry .col-date-time span,
+        .document-entry .col-description span {
+            display: block; /* Ensure each line takes full width */
+            margin-bottom: 2px;
+        }
+        .document-entry .col-date-time span:last-child,
+        .document-entry .col-description span:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* --- Checkbox Container (tetap di bawah browser frame) --- */
+        .checkbox-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            font-size: 1em;
+            color: #fff;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a0a0ff;
+            border-radius: 4px;
+            background-color: #333;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background-color: #a0a0ff;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .browser-frame {
+                width: 95%;
+                height: auto; /* Mengizinkan tinggi menyesuaikan konten */
+            }
+
+            .top-banner {
+                padding: 10px 15px;
+            }
+
+            .top-banner .title {
+                font-size: 1.5em;
+            }
+
+            .top-banner .menu-button {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+
+            .document-container {
+                width: 100%; /* Lebarkan penuh */
+                padding: 15px;
+                margin-top: 60px; /* Kurangi margin atas */
+            }
+
+            .document-box-header {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .document-entry {
+                flex-direction: column; /* Tumpuk konten secara vertikal */
+                align-items: flex-start; /* Rata kiri untuk setiap baris */
+                font-size: 0.95em;
+                padding: 10px;
+                gap: 5px; /* Kurangi jarak antar baris */
+            }
+            .document-entry div {
+                text-align: left; /* Semua teks rata kiri */
+                flex: none; /* Hapus flex grow */
+                width: 100%; /* Ambil lebar penuh */
+            }
+            .document-entry .col-task-id,
+            .document-entry .col-date-time,
+            .document-entry .col-description {
+                 text-align: left; /* Pastikan semua rata kiri */
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-frame">
+        <div class="browser-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="address-bar"></div>
+        </div>
+        <div class="dashboard-content-area">
+            <div class="top-banner">
+                <div class="title">DOCUMENT</div>
+                <div class="menu-button">MENU</div>
+            </div>
+
+            <div class="document-container">
+                <div class="document-box-header">
+                    ID TASK
+                </div>
+                <div class="document-entry">
+                    <div class="col-task-id">11D</div>
+                    <div class="col-date-time">
+                        <span>1 DESEMBER 2023</span>
+                        <span>10:30</span>
+                    </div>
+                    <div class="col-description">
+                        <span>SELESAI MENANAM</span>
+                        <span>MENANAM PADI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkbox-container">
+        <div class="checkbox-item">
+            <input type="checkbox" id="resizeMobile" checked>
+            <label for="resizeMobile">Ubah ukuran untuk perangkat seluler</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="includeNav" checked>
+            <label for="includeNav">Sertakan menu navigasi</label>
+        </div>
+    </div>
+</body>
+</html>

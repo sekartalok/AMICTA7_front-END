@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - ERROR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar browser frame */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column; /* Mengatur item flex agar menumpuk vertikal */
+        }
+
+        .browser-frame {
+            width: 80%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Tinggi tetap browser frame */
+            position: relative;
+        }
+
+        .browser-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .address-bar {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: right;
+            position: relative;
+        }
+
+        .address-bar::after {
+            content: '≡'; /* Burger menu icon */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .dashboard-content-area {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, #777, #bbb); /* Gradasi latar belakang */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .top-banner {
+            width: calc(100% + 40px); /* Extend to cover full width including padding */
+            background-color: #555; /* Darker background for the top banner */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+        }
+
+        .top-banner .title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* No menu button on error page as per image */
+
+        .error-container {
+            width: calc(100% - 40px); /* Adjust for padding */
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 40px 20px; /* Increased padding for better centering */
+            margin-top: 80px; /* Space for the top banner */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            text-align: center;
+            flex-grow: 1; /* Allow container to grow and fill space */
+            box-sizing: border-box;
+        }
+
+        .error-message {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .error-code-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px; /* Space above error code label */
+            margin-bottom: 5px;
+        }
+
+        .error-number {
+            font-size: 4em; /* Large font size for 404 */
+            font-weight: bold;
+            color: #333;
+            line-height: 1; /* Remove extra line height */
+        }
+
+        /* --- Checkbox Container (tetap di bawah browser frame) --- */
+        .checkbox-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            font-size: 1em;
+            color: #fff;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a0a0ff;
+            border-radius: 4px;
+            background-color: #333;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background-color: #a0a0ff;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .browser-frame {
+                width: 95%;
+                height: auto; /* Mengizinkan tinggi menyesuaikan konten */
+            }
+
+            .top-banner {
+                padding: 10px 15px;
+            }
+
+            .top-banner .title {
+                font-size: 1.5em;
+            }
+
+            .error-container {
+                width: 100%; /* Lebarkan penuh */
+                padding: 30px 15px; /* Adjust padding */
+                margin-top: 60px; /* Kurangi margin atas */
+            }
+
+            .error-message {
+                font-size: 1.2em;
+            }
+
+            .error-code-label {
+                font-size: 1em;
+            }
+
+            .error-number {
+                font-size: 3em;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-frame">
+        <div class="browser-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="address-bar"></div>
+        </div>
+        <div class="dashboard-content-area">
+            <div class="top-banner">
+                <div class="title">ERROR</div>
+                </div>
+
+            <div class="error-container">
+                <div class="error-message">
+                    SYS ERROR CALL YOUR ADMINISTRATOR OR MECHANIC
+                </div>
+                <div class="error-code-label">
+                    ERROR CODE
+                </div>
+                <div class="error-number">
+                    404
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkbox-container">
+        <div class="checkbox-item">
+            <input type="checkbox" id="resizeMobile" checked>
+            <label for="resizeMobile">Ubah ukuran untuk perangkat seluler</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="includeNav" checked>
+            <label for="includeNav">Sertakan menu navigasi</label>
+        </div>
+    </div>
+</body>
+</html>

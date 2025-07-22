@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Tambah Jadwal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar browser frame */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            flex-direction: column; /* Mengatur item flex agar menumpuk vertikal */
+        }
+
+        .browser-frame {
+            width: 80%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Tinggi tetap browser frame */
+            position: relative;
+        }
+
+        .browser-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .address-bar {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: right;
+            position: relative;
+        }
+
+        .address-bar::after {
+            content: '≡'; /* Burger menu icon */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .dashboard-content-area {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, #777, #bbb); /* Gradasi latar belakang untuk halaman form */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .top-banner {
+            width: calc(100% + 40px); /* Extend to cover full width including padding */
+            background-color: #555; /* Darker background for the top banner */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+        }
+
+        .top-banner .title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .top-banner .back-button {
+            background-color: #ccc;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .top-banner .back-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .form-container {
+            width: calc(100% - 40px); /* Adjust for padding */
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 80px; /* Space for the top banner */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .form-input-box {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            flex-grow: 1;
+            box-sizing: border-box;
+            font-size: 1.1em;
+            display: flex; /* For centering text */
+            justify-content: center;
+            align-items: center;
+            min-height: 45px; /* Ensure consistent height */
+        }
+
+        .form-textarea-box {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            width: 100%;
+            height: 150px; /* Height for the description box */
+            box-sizing: border-box;
+            font-size: 1.1em;
+            display: flex; /* For centering text */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upload-button {
+            background: linear-gradient(to right, #4CAF50, #8BC34A); /* Green gradient */
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3em;
+            cursor: pointer;
+            border: 2px solid #333; /* Dark border */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 15px; /* Space above button */
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* --- Checkbox Container (tetap di bawah browser frame) --- */
+        .checkbox-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            font-size: 1em;
+            color: #fff;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a0a0ff;
+            border-radius: 4px;
+            background-color: #333;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background-color: #a0a0ff;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .browser-frame {
+                width: 95%;
+                height: auto; /* Mengizinkan tinggi menyesuaikan konten */
+            }
+
+            .top-banner {
+                padding: 10px 15px;
+            }
+
+            .top-banner .title {
+                font-size: 1.5em;
+            }
+
+            .top-banner .back-button {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+
+            .form-container {
+                width: 100%; /* Lebarkan penuh */
+                padding: 15px;
+                margin-top: 60px; /* Kurangi margin atas */
+            }
+
+            .form-row {
+                flex-direction: column; /* Tumpuk input secara vertikal */
+                gap: 10px;
+            }
+
+            .form-input-box, .form-textarea-box {
+                font-size: 1em;
+                padding: 10px;
+                min-height: 40px;
+            }
+
+            .form-textarea-box {
+                height: 120px; /* Kurangi tinggi textarea */
+            }
+
+            .upload-button {
+                font-size: 1.1em;
+                padding: 12px;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-frame">
+        <div class="browser-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="address-bar"></div>
+        </div>
+        <div class="dashboard-content-area">
+            <div class="top-banner">
+                <div class="title">JADWAL</div>
+                <div class="back-button">BACK</div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-row">
+                    <div class="form-input-box">ID PEKERJAAN</div>
+                    <div class="form-input-box">ID PEKERJA</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-input-box">NAMA PEKERJAAN</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-input-box">TANGGAL MULAI</div>
+                    <div class="form-input-box">TANGGAL SELESAI</div>
+                </div>
+                <div class="form-textarea-box">
+                    DESKRIPSI
+                </div>
+            </div>
+
+            <div class="upload-button">
+                UPLOAD
+            </div>
+        </div>
+    </div>
+
+    <div class="checkbox-container">
+        <div class="checkbox-item">
+            <input type="checkbox" id="resizeMobile" checked>
+            <label for="resizeMobile">Ubah ukuran untuk perangkat seluler</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="includeNav" checked>
+            <label for="includeNav">Sertakan menu navigasi</label>
+        </div>
+    </div>
+</body>
+</html>
