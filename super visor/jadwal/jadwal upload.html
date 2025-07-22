@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Buat Jadwal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background: linear-gradient(to right, #333, #555);
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title,
+        .top-banner .subtitle {
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+        }
+
+        .top-banner .subtitle {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .top-banner .back-button {
+            background-color: #ddd;
+            color: #333;
+            border-radius: 5px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .top-banner .back-button:hover {
+            background-color: #fff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vh, 1.5rem);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .input-field {
+            width: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: #333;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .input-field::placeholder {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .textarea-field {
+            width: 100%;
+            min-height: 150px;
+            background-color: #f9f9f9;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            padding: 15px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: bold;
+            text-align: center;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        
+        .textarea-field::placeholder {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .upload-button {
+            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            color: #fff;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            border: 2px solid #333;
+            outline: none;
+        }
+
+        .upload-button:hover {
+            transform: scale(1.02);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">JADWAL</div>
+            <div class="subtitle">SUPERVISOR</div>
+            <a href="#" class="back-button">BACK</a>
+        </div>
+
+        <div class="main-content">
+            <div class="form-container">
+                <div class="input-grid">
+                    <input type="text" class="input-field" placeholder="ID PEKERJAAN">
+                    <input type="text" class="input-field" placeholder="ID PEKERJA">
+                    <input type="text" class="input-field" placeholder="NAMA PEKERJAAN">
+                    <input type="text" class="input-field" placeholder="TANGGAL MULAI">
+                    <input type="text" class="input-field" placeholder="TANGGAL SELESAI">
+                </div>
+                <textarea class="textarea-field" placeholder="DESKRIPSI"></textarea>
+                <button class="upload-button">UPLOAD</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

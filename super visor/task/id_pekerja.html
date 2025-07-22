@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Task Supervisor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #444, #888);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background-color: #555;
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-banner .title-group {
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+        .top-banner .title-group .subtitle {
+            margin: 0 auto;
+        }
+
+        .back-button {
+            background-color: #ddd;
+            color: #333;
+            border-radius: 5px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid #555;
+            transition: background-color 0.2s ease;
+        }
+        .back-button:hover {
+            background-color: #fff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .main-card {
+            width: 100%;
+            max-width: 700px;
+            background-color: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(1rem, 3vh, 1.5rem);
+        }
+
+        .profile-id {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: bold;
+            color: #333;
+            width: 100%;
+            text-align: left;
+        }
+
+        .profile-info-box {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.8rem, 2vh, 1rem);
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .profile-detail-item {
+            display: flex;
+        }
+        
+        .profile-detail-item strong {
+            flex-basis: 120px; /* Lebar tetap untuk label */
+            flex-shrink: 0; /* Mencegah label menyusut */
+        }
+        
+        .profile-detail-item span {
+            word-break: break-all; /* Memastikan data panjang bisa pindah baris */
+        }
+        
+        .button-grid {
+            width: 100%;
+            display: flex;
+            gap: clamp(1rem, 3vw, 1.5rem);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            flex-grow: 1;
+            flex-basis: 200px;
+            background-color: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 5px;
+            padding: clamp(12px, 3vw, 18px);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .action-button.yellow {
+            background-color: #FFD700;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 600px) {
+            .top-banner .subtitle {
+                display: none; /* Sembunyikan 'SUPERVISOR' di layar kecil */
+            }
+            .profile-detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .profile-detail-item strong {
+                flex-basis: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title-group">TASK</div>
+            <div class="title-group subtitle">SUPERVISOR</div>
+            <a href="#" class="back-button">BACK</a>
+        </div>
+
+        <div class="main-content">
+            <div class="main-card">
+                <div class="profile-id">110F</div>
+                <div class="profile-info-box">
+                    <div class="profile-detail-item"><strong>NAMA:</strong> <span>NAMA SUPERVISOR</span></div>
+                    <div class="profile-detail-item"><strong>KENDARAAN:</strong> <span>AVANZA</span></div>
+                    <div class="profile-detail-item"><strong>NOMOR HP:</strong> <span>081234567890</span></div>
+                </div>
+                <div class="button-grid">
+                    <a href="#" class="action-button yellow">TASK</a>
+                    <a href="#" class="action-button yellow">PERSONAL DOCUMENT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

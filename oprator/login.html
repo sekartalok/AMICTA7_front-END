@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ccc, #888);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background-color: #555;
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: center; /* Center title */
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 450px; /* Lebar maksimal form login */
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 3vh, 1.5rem); /* Jarak antar input */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .login-input {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #333;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .login-input::placeholder {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .login-button {
+            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            border: 2px solid #333;
+            outline: none;
+        }
+
+        .login-button:hover {
+            transform: scale(1.02);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">LOGIN</div>
+        </div>
+
+        <div class="main-content">
+            <div class="login-container">
+                <input type="text" class="login-input" placeholder="USER ID">
+                <input type="text" class="login-input" placeholder="ID KENDARAAN">
+                <input type="password" class="login-input" placeholder="PASSWORD">
+                <button class="login-button">LOGIN</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

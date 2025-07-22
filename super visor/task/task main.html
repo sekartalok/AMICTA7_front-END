@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Supervisor Working</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ccc, #888);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background-color: #555;
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner span {
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            flex-grow: 1;
+        }
+
+        .top-banner .center-text {
+            text-align: center;
+        }
+
+        .top-banner .right-action {
+            text-align: right;
+            flex-grow: 1;
+        }
+        
+        /* Gaya untuk tombol baru */
+        .action-button {
+            background-color: #ddd;
+            color: #333;
+            border-radius: 5px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border: none;
+        }
+        
+        .action-button:hover {
+            background-color: #fff;
+        }
+
+        .main-content-wrapper {
+             flex-grow: 1;
+             width: 100%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             padding: clamp(1rem, 5vw, 2rem);
+             box-sizing: border-box;
+        }
+
+        .content-box {
+            width: 100%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: clamp(1rem, 4vw, 2rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vh, 1.5rem);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-height: 400px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: clamp(1rem, 2vw, 1.2rem);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #333;
+        }
+
+        .working-box {
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+
+        .task-detail-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+        
+        .task-detail-item {
+            text-align: center;
+        }
+        
+        .task-detail-item:nth-child(1) { text-align: left; flex-grow: 1; font-weight: bold; }
+        .task-detail-item:nth-child(2) { text-align: left; flex-grow: 2; }
+        .task-detail-item:nth-child(3) { text-align: right; flex-grow: 1; font-weight: bold;}
+        
+        @media (max-width: 768px) {
+            .main-content-wrapper {
+                align-items: flex-start;
+            }
+            .top-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .top-banner span, .top-banner .right-action {
+                text-align: left !important;
+                width: 100%;
+            }
+
+            .task-detail-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .task-detail-item {
+                text-align: left !important;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <span class="left-text">TASK</span>
+            <span class="center-text">SUPERVISOR</span>
+            <div class="right-action">
+                <a href="#" class="action-button">JADWAL</a>
+            </div>
+        </div>
+
+        <div class="main-content-wrapper">
+            <div class="content-box">
+                <div class="info-card working-box">
+                    WORKING 1
+                </div>
+                <div class="info-card task-detail-box">
+                    <div class="task-detail-item">113DE</div>
+                    <div class="task-detail-item">1 DESEMBER 2023<br>2 DESEMBER 2023</div>
+                    <div class="task-detail-item">MENANAM PADI</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

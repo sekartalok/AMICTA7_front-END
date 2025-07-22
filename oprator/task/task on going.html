@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Task On Going</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #777, #bbb);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background-color: #555;
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .top-banner .menu-button {
+            background-color: #ccc;
+            color: #333;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            text-decoration: none;
+        }
+        .top-banner .menu-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .main-content-wrapper {
+             flex-grow: 1;
+             width: 100%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             padding: clamp(1rem, 5vw, 2rem);
+             box-sizing: border-box;
+        }
+
+        .task-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: clamp(1rem, 4vw, 2rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vh, 1.5rem);
+        }
+
+        .info-card {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: #333;
+        }
+
+        .task-summary-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-weight: bold;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+        }
+
+        .task-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .task-entry .id {
+            font-weight: bold;
+            flex-basis: 100px; /* Lebar minimum untuk ID */
+            flex-grow: 1;
+        }
+        .task-entry .details {
+            text-align: center;
+            flex-grow: 2;
+        }
+        .task-entry .description {
+            text-align: right;
+            flex-grow: 2;
+        }
+        .task-entry span {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content-wrapper {
+                align-items: flex-start;
+            }
+            .task-summary-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .task-entry {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .task-entry .details,
+            .task-entry .description {
+                text-align: left;
+            }
+
+            /* Menambahkan label untuk kejelasan di mobile */
+            .task-entry .id::before { content: "ID: "; font-weight: normal; }
+            .task-entry .details::before { content: "Tanggal: "; font-weight: bold; display: block; margin-bottom: 4px; }
+            .task-entry .description::before { content: "Deskripsi: "; font-weight: bold; display: block; margin-bottom: 4px; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">TASK ON GOING</div>
+            <a href="#" class="menu-button">MENU</a>
+        </div>
+
+        <div class="main-content-wrapper">
+            <div class="task-container">
+                <div class="info-card task-summary-row">
+                    <div>ON GOING: 1</div>
+                    <div>OUT DATE: 0</div>
+                </div>
+
+                <div class="info-card task-entry">
+                    <div class="id">113DE</div>
+                    <div class="details">
+                        <span>1 DESEMBER 2023</span>
+                        <span>2 DESEMBER 2023</span>
+                    </div>
+                    <div class="description">
+                        <span>MENANAM PADI</span>
+                    </div>
+                </div>
+
+                <div class="info-card task-entry">
+                    <div class="id">114FG</div>
+                    <div class="details">
+                        <span>3 DESEMBER 2023</span>
+                        <span>3 DESEMBER 2023</span>
+                    </div>
+                    <div class="description">
+                        <span>MEMUPUK LAHAN</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

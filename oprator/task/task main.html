@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Task On Going</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background: linear-gradient(to right, #333, #555);
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .menu-button {
+            background-color: #ddd;
+            color: #333;
+            border-radius: 5px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid #555;
+            transition: background-color 0.2s ease;
+        }
+        .menu-button:hover {
+            background-color: #fff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .task-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border: 3px solid #333;
+            border-radius: 12px;
+            padding: clamp(1rem, 4vw, 2rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vh, 1.5rem);
+            min-height: 400px;
+        }
+
+        .summary-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.8rem, 2vw, 1.2rem);
+        }
+
+        .summary-button {
+            flex-grow: 1;
+            flex-basis: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: clamp(0.8rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .summary-button:hover {
+            background-color: #f7f7f7;
+        }
+        .summary-button .count {
+            background-color: #e0e0e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .task-entry {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+
+        .task-entry .id {
+            font-weight: bold;
+        }
+        .task-entry .details {
+            line-height: 1.5;
+        }
+        .task-entry .description {
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                align-items: flex-start;
+            }
+            .task-entry {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">TASK ON GOING</div>
+            <a href="#" class="menu-button">MENU</a>
+        </div>
+
+        <div class="main-content">
+            <div class="task-container">
+                <div class="summary-row">
+                    <button class="summary-button">
+                        <span>ON GOING</span>
+                        <span class="count">1</span>
+                    </button>
+                    <button class="summary-button">
+                        <span>OUT DATE</span>
+                        <span class="count">0</span>
+                    </button>
+                </div>
+
+                <div class="task-entry">
+                    <div class="id">113DE</div>
+                    <div class="details">
+                        1 DESEMBER 2023 <br>
+                        2 DESEMBER 2023
+                    </div>
+                    <div class="description">MENANAM PADI</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

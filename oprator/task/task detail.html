@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Detail Task</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background: linear-gradient(to right, #333, #555);
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .action-button {
+            background-color: #ddd;
+            color: #333;
+            border-radius: 5px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid #555;
+            transition: background-color 0.2s ease;
+        }
+        .action-button:hover {
+            background-color: #fff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .task-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: clamp(1rem, 4vw, 2rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vh, 1.5rem);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .task-dates {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            flex-wrap: wrap;
+        }
+        
+        .task-actions .action-button {
+            border-width: 2px;
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
+        }
+        .task-actions .log { background-color: #ffbd2e; border-color: #a67c1d; }
+        .task-actions .document { background-color: #ffbd2e; border-color: #a67c1d; }
+        .task-actions .complete { background-color: #27c93f; border-color: #1a8a2e; }
+
+        .description-box {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .description-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ccc;
+            font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+            font-weight: bold;
+        }
+
+        .description-body {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .task-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .task-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .description-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">TASK</div>
+            <a href="#" class="action-button">LOCK</a>
+        </div>
+
+        <div class="main-content">
+            <div class="task-container">
+                <div class="task-header">
+                    <div class="task-dates">
+                        1 DESEMBER 2023 <br>
+                        2 DESEMBER 2023
+                    </div>
+                    <div class="task-actions">
+                        <button class="action-button log">LOG</button>
+                        <button class="action-button document">DOCUMENT</button>
+                        <button class="action-button complete">COMPLETE</button>
+                    </div>
+                </div>
+                <div class="description-box">
+                    <div class="description-header">
+                        <span>113DE</span>
+                        <span>MENANAM PADI</span>
+                    </div>
+                    <div class="description-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

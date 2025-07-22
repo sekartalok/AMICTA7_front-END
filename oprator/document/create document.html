@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - </title>
+    <title>AEGIS UTILITY MANAGEMENT - DOCUMENT</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #dedede, #fefefe);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-banner {
+            width: 100%;
+            background: linear-gradient(to bottom, #333, #666);
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .top-banner .back-button {
+            background-color: #ccc;
+            color: #333;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            text-decoration: none;
+        }
+        .top-banner .back-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1rem, 3vh, 1.5rem);
+        }
+
+        /* NEW: Styles for the editable text box */
+        .editable-text-box {
+            width: 100%;
+            flex-grow: 1;
+            min-height: 250px;
+            padding: 1.5rem;
+            background-color: #fff;
+            border: 2px solid #a0a0a0;
+            border-radius: 8px;
+            color: #333;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            box-sizing: border-box;
+            cursor: text;
+            overflow-y: auto; /* Add scroll if content is long */
+        }
+
+        .editable-text-box:focus {
+            outline: 2px solid #4CAF50;
+            border-color: transparent;
+        }
+        
+        /* CSS trick for placeholder text */
+        .editable-text-box:empty::before {
+            content: "Ketikkan teks Anda di sini...";
+            color: #999;
+            pointer-events: none; /* Allows clicking through the placeholder */
+        }
+
+
+        .submit-button {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            color: #fff;
+            padding: clamp(12px, 2vh, 18px);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            max-width: 500px;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .top-banner {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">INPUT TEXT</div>
+            <a href="#" class="back-button">BACK</a>
+        </div>
+
+        <div class="main-content">
+            <div class="editable-text-box" contenteditable="true" aria-label="Text input area"></div>
+            
+            <div class="submit-button">
+                SUBMIT
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Detail Jadwal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #777, #bbb);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .top-banner {
+            width: 100%;
+            background-color: #555;
+            padding: 15px clamp(1rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .top-banner .title {
+            font-weight: bold;
+            font-size: clamp(1.5rem, 4vw, 1.8em);
+        }
+
+        .top-banner .back-button {
+            background-color: #ccc;
+            color: #333;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 20px);
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            text-decoration: none;
+        }
+        .top-banner .back-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .detail-container-wrapper {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 5vw, 2rem);
+            box-sizing: border-box;
+        }
+
+        .detail-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: clamp(1rem, 4vw, 2rem);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .info-card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: clamp(0.8rem, 2vw, 1.2rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: #333;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .summary-row .data-item {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .summary-row .data-item.task-id { font-weight: bold; text-align: left; }
+        .summary-row .data-item.name { text-align: right; }
+
+        .description-box {
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        @media (max-width: 768px) {
+            .detail-container-wrapper {
+                align-items: flex-start; /* Konten mulai dari atas di mobile */
+            }
+            .header-row,
+            .summary-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .summary-row .data-item {
+                text-align: left !important;
+                width: 100%;
+            }
+
+            .summary-row .data-item.task-id::before { content: "ID Task: "; font-weight: bold; }
+            .summary-row .data-item.time::before { content: "Waktu: "; font-weight: bold; }
+            .summary-row .data-item.status::before { content: "Status: "; font-weight: bold; }
+            .summary-row .data-item.other-id::before { content: "ID Lain: "; font-weight: bold; }
+            .summary-row .data-item.name::before { content: "Nama: "; font-weight: bold; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="top-banner">
+            <div class="title">TASK</div>
+            <a href="#" class="back-button">BACK</a>
+        </div>
+
+        <div class="detail-container-wrapper">
+            <div class="detail-container">
+                <div class="info-card header-row">
+                    <span>1 DESEMBER 2023</span>
+                    <span>113DE</span>
+                    <span>MENANAM PADI</span>
+                </div>
+                <div class="info-card summary-row">
+                    <span class="data-item task-id">11D</span>
+                    <span class="data-item time">10:30</span>
+                    <span class="data-item status">SELESAI MENANAM</span>
+                    <span class="data-item other-id">110F</span>
+                    <span class="data-item name">ANDI</span>
+                </div>
+                <div class="info-card description-box">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

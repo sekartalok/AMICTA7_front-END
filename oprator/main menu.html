@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS UTILITY MANAGEMENT - Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Background gelap di luar */
+        }
+
+        .dashboard-content-area {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #dedede, #fefefe); /* Gradien abu-abu keputihan */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0; /* Remove padding here */
+            box-sizing: border-box;
+            position: relative; /* Needed for absolute positioning of top banner */
+        }
+
+        .top-banner {
+            width: 100%;
+            background: linear-gradient(to bottom, #333, #666); /* Darker gradient for the banner */
+            padding: 15px clamp(1rem, 5vw, 3rem); /* Horizontal padding for responsive design */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            color: #fff;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+
+        .welcome-name {
+            color: #fff;
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+        }
+
+        .icon-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(1.5rem, 4vw, 3rem);
+            margin-top: 150px; /* Adjust margin-top to push icons below the banner */
+            padding: clamp(1rem, 5vw, 3rem); /* Add padding to the grid itself */
+            box-sizing: border-box;
+            max-width: 1200px; /* Limit width of the grid */
+            width: 100%; /* Ensure it takes full width within max-width */
+        }
+
+        .icon-item {
+            background: linear-gradient(to bottom, #e0e0e0, #f0f0f0); /* Lighter gradient for icons */
+            border: 2px solid #a0a0a0; /* Softer border color */
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px; /* Add padding inside icon boxes */
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: clamp(120px, 18vw, 180px);
+            aspect-ratio: 1 / 1;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-decoration: none; /* Ensure no underline if it becomes a link */
+            color: inherit; /* Ensure text color is inherited */
+        }
+
+        .icon-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
+        }
+
+        .icon-svg {
+            width: 60%; /* Make icons slightly larger */
+            height: 60%; /* Make icons slightly larger */
+            fill: #333;
+        }
+
+        .icon-text {
+            display: block; /* Make the text visible again */
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin-top: 10px; /* Add some space between icon and text */
+        }
+
+        @media (max-width: 600px) {
+            .top-banner {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                padding: 10px 20px;
+            }
+
+            .icon-grid {
+                margin-top: 100px; /* Adjust for smaller banner height on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-content-area">
+        <div class="top-banner">
+            <span class="menu-title">MENU</span>
+            <span class="welcome-name">WELCOME NAME</span>
+        </div>
+        <div class="icon-grid">
+            <div class="icon-item">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/>
+                </svg>
+                <span class="icon-text">JADWAL</span>
+            </div>
+            <div class="icon-item">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M4 11h16v2H4zM4 6h16v2H4zM4 16h16v2H4z"/>
+                </svg>
+                <span class="icon-text">TASK</span>
+            </div>
+            <div class="icon-item">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-2 18H7v-2h5v2zm0-4H7v-2h5v2zm2-7V4.5L19.5 9H14z"/>
+                </svg>
+                <span class="icon-text">DOCUMENT</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
